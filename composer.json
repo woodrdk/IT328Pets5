@@ -1,0 +1,19 @@
+{
+  "name": "328/pets5",
+  "authors": [
+    {
+      "name": "Rob Wood",
+      "email": "rwood3@mail.greeriver.edu"
+    },
+    {
+      "name": "Chad Drennan",
+      "email": "cdrennan@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/"]
+  }
+}

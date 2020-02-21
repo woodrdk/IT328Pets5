@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pets</title>
+</head>
+<body>
+<h1> Result page</h1>
+<p> Thank you for ordering a {{ @SESSION.animal->getColor() }} {{ @SESSION.animal->getType() }} named
+    {{ @SESSION.animal->getName() }} . </p>
+<p>{{@SESSION.animal->talk()}}.  </p>
+</body>
+</html>
