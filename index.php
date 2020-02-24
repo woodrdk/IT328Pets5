@@ -14,6 +14,7 @@ $f3 = Base::instance();
 $f3->set('DEBUG', 3);
 $f3->set('colors', array('pink', 'black', 'brown', 'white'));
 
+$db = new Database();
 
 $f3->route('GET /',function ()
 {
@@ -104,6 +105,16 @@ $f3->route('GET|POST /order2',function ($f3)
     echo $view-> render('views/form2.html');//use it to render the main page
 
 });
+
+$f3->route('GET /view', function($f3) {
+    $pets = $GLOBALS['db']->getPets();
+
+    $f3->set('pets', $pets);
+    $view = new Template();
+    echo $view-> render('views/view.html');
+});
+
+
 
 //$f3->route('POST /results',function ()
 //{

@@ -2,6 +2,6 @@
 
 //config-student.php
 
-define("DB_DSN", "mysql:dbname=rwoodgre_grc");
-define("DB_USERNAME", "rwoodgre_grcuser");
-define("DB_PASSWORD", 'NONEnone2@2@');
+define("DB_DSN", "mysql:dbname=cdrennan_grc");
+define("DB_USERNAME", "cdrennan_grcuser");
+define("DB_PASSWORD", 't#,f3X2SnBQK');
