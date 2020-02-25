@@ -1,6 +1,6 @@
 <?php
 
-require_once ("config-student.php");
+require_once("config-pet.php");
 
 class Database
 {

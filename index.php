@@ -12,17 +12,14 @@ session_start();
 
 $f3 = Base::instance();
 $f3->set('DEBUG', 3);
+$controller = new PetController($f3);
 $f3->set('colors', array('pink', 'black', 'brown', 'white'));
 
 $db = new Database();
 
-$f3->route('GET /',function ()
+$f3->route('GET /',function ($f3)
 {
-//    $view = new Template();//template object
-//    echo $view-> render('views/home.html');//use it to render the main page
-    echo "<h1>My pets </h1>";
-    echo"<a href='order'>Order a pet</a>";
-
+    $GLOBALS['controller']->home();
 });
 
 $f3->route('GET /@item', function($f3, $params) {
@@ -51,67 +48,16 @@ $f3->route('GET /@item', function($f3, $params) {
 });
 
 $f3->route('GET|POST /order',function ($f3){
-    $_SESSION = [];
-
-    if(isset($_POST['animal'])) {
-        $animal = $_POST['animal'];
-        if(validString($animal)) {
-            if($animal == "dog"){
-                $_SESSION['animal'] = new Dog();
-            }
-            else if($animal == "cat"){
-                $_SESSION['animal'] = new Cat();
-            }
-            else if($animal == "bird"){
-                $_SESSION['animal'] = new Bird();
-            }
-            else{
-                $_SESSION['animal'] = new Pet();
-            }
-            $_SESSION['animal']->setType($animal);
-            $f3->reroute('/order2');
-        }
-        else {
-            $f3->set("errors['animal']", "Please enter an animal");
-            $f3->set('type', $animal);
-        }
-    }
-    $view = new Template();//template object
-    echo $view-> render('views/form1.html');
-    //use it to render the main page
+    $GLOBALS['controller']->order();
 });
 
 $f3->route('GET|POST /order2',function ($f3)
 {
-    if(isset($_POST['color'])) {
-        $color = $_POST['color'];
-        $name = $_POST['name'];
-        $f3->set('name', $name);
-        $f3->set('color', $color);
-        if(validColor($color)) {
-            if(validString($name)) {
-                $_SESSION['animal']->setColor($color);
-                $_SESSION['animal']->setName($name);
-                $view = new Template();//template object
-                echo $view-> render('views/results.html');
-                return;
-            }
-        }
-        else {
-            $f3->set("errors['color']", "Please select a valid color");
-        }
-    }
-    $view = new Template();//template object
-    echo $view-> render('views/form2.html');//use it to render the main page
-
+    $GLOBALS['controller']->order2();
 });
 
-$f3->route('GET /view', function($f3) {
-    $pets = $GLOBALS['db']->getPets();
-
-    $f3->set('pets', $pets);
-    $view = new Template();
-    echo $view-> render('views/view.html');
+$f3->route('GET /show', function($f3) {
+    $GLOBALS['controller']->show();
 });
 
 
