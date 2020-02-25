@@ -63,6 +63,10 @@ class PetController
                 if(validString($name)) {
                     $_SESSION['animal']->setColor($color);
                     $_SESSION['animal']->setName($name);
+                    $animal = $_SESSION['animal'];
+                    //Write pet to the database
+                    $GLOBALS['db']->writePet($animal);
+
                     $view = new Template();//template object
                     echo $view-> render('views/results.html');
                     return;

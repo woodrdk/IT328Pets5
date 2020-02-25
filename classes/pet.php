@@ -7,11 +7,6 @@ class Pet
     private $_type;
 
 
-/*    function __construct()
-    {
-        $this->_name = "No Clue";
-        $this->_color = "red";
-    }*/
     // default constructor
     function __construct($name = "Fido", $color = "Blue", $type = "animal")
     {

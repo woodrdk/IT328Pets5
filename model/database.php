@@ -39,5 +39,20 @@ class Database
         return $result;
     }
 
+    function writePet($pet)
+    {
+        $id = $this->_dbh->lastInsertId();
+       // var_dump($pet);
+        $sql = "INSERT into pets ( name, color, type)
+                VALUES ( :name, :color, :type";
+        $statement = $this->_dbh->prepare($sql);
 
+        $statement->bindParam(':name' , $pet->getName());
+        $statement->bindParam(':color' , $pet->getColor());
+        $statement->bindParam(':type' , $pet->getType());
+        $statement->execute();
+
+        // Get the key of the last inserted row
+        // $id = $this->_dbh->lastInsertId();
+    }
 }
